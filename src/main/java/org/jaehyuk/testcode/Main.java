@@ -31,5 +31,6 @@ public class Main {
         for(int q=0; q<N; q++){
             System.out.print(baskets[q]+" ");
         }
+        System.out.println('아');
     }
 }
