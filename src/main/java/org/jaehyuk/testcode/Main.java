@@ -2,35 +2,26 @@ package org.jaehyuk.testcode;
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
-        //N = 바구니
-        //동시에 공도 그만큼
-        //바구니에는 공을 1개만 넣을 수 있다.
-        //M 앞으로 공을 몇번넣을지
-        //첫번째줄 입력은 바구니의 수와, 앞으로 넣을 수
-        //이후 줄은 ijk
-        //i ~j :i부터 j까지의 바구니를 의미
-        //k : 공의 숫자이다.
-        Scanner sc = new Scanner(System.in);
+        Scanner sc=new Scanner(System.in);
         int N=sc.nextInt();
-        int M=sc.nextInt();
-        int[] baskets=new int[N];
-
-        int i,j,k=0;
-        for(int q=0; q<N; q++){
-            baskets[q]=0;
+        double[] grade_list=new double[N];
+        for(int i=0; i<N; i++){
+            grade_list[i]=sc.nextInt();
         }
-        for(int z=0; z<M; z++){
-            i=sc.nextInt();
-            j=sc.nextInt();
-            k=sc.nextInt();
-            for(int q=i-1; q<j; q++){
-                baskets[q]=k;
+        double M=0;
+        for(int i=0; i<N; i++){
+            if(M<grade_list[i]){
+                M= grade_list[i];
             }
+        }
 
+
+        for(int i=0; i<N; i++) grade_list[i] = (grade_list[i] / M) * 100;
+
+        double New_grade=0;
+        for(int i=0; i<N; i++){
+            New_grade+=grade_list[i];
         }
-        for(int q=0; q<N; q++){
-            System.out.print(baskets[q]+" ");
-        }
-        System.out.println('아');
+        System.out.print(New_grade/grade_list.length);
     }
 }
