@@ -1,0 +1,1 @@
+rootProject.name = "its_baekjoon_study"
