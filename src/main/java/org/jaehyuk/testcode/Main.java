@@ -1,28 +1,33 @@
 package org.jaehyuk.testcode;
+import java.io.*;
 import java.util.*;
 
 public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
 
-    public static void main(String[] arg){
-        Scanner sc =new Scanner(System.in);
-        int cnt=sc.nextInt();
-        boolean[][] paper=new boolean[100][100];
-        for(int i=0; i<cnt; i++){
-            int x=sc.nextInt();
-            int y=sc.nextInt();
-            for(int height=x; height<x+10; height++){
-                for(int width=y; width<y+10; width++){
-                    paper[height][width]=true;
+        int T=Integer.parseInt(bf.readLine());
+        for(int i=0; i<T; i++){
+            String[] tar = bf.readLine().split(" ");
+            for(int j=0; j<tar.length; j++){
+                if(tar[j].length()==1) {
+                    bw.write(tar[j]+" ");
+                    continue;
                 }
+                char[] tar2=new char[tar[j].length()];
+                for(int k=0; k<tar2.length; k++){
+                    tar2[k]=tar[j].charAt(tar[j].length()-1-k);
+                }
+                for(int k=0; k<tar2.length; k++){
+                    bw.write(tar2[k]);
+                }
+                if(j==tar.length-1) continue;
+                else bw.write(" ");
             }
+            bw.write("\n");
         }
-
-        cnt=0;
-        for(int i=0; i<100; i++){
-            for(int j=0; j<100; j++){
-                if(paper[i][j]) cnt++;
-            }
-        }
-        System.out.println(cnt);
+        bw.close();
+        bf.close();
     }
 }
