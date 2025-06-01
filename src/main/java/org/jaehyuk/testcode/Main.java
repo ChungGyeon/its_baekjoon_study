@@ -4,30 +4,37 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+        BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+        int cnt=Integer.parseInt(sc.readLine());
+        Stack<Integer> stack=new Stack<>();
 
-        int T=Integer.parseInt(bf.readLine());
-        for(int i=0; i<T; i++){
-            String[] tar = bf.readLine().split(" ");
-            for(int j=0; j<tar.length; j++){
-                if(tar[j].length()==1) {
-                    bw.write(tar[j]+" ");
-                    continue;
-                }
-                char[] tar2=new char[tar[j].length()];
-                for(int k=0; k<tar2.length; k++){
-                    tar2[k]=tar[j].charAt(tar[j].length()-1-k);
-                }
-                for(int k=0; k<tar2.length; k++){
-                    bw.write(tar2[k]);
-                }
-                if(j==tar.length-1) continue;
-                else bw.write(" ");
+        for(int i=0; i<cnt; i++){
+            String order=sc.readLine().trim();
+            String[] part=order.split("\\s+");
+            switch (part[0]) {
+                case "push":
+                    int a=Integer.parseInt(part[1]);
+                    stack.push(a);
+                    break;
+                case "pop":
+                    if(stack.isEmpty()) System.out.println(-1);
+                    else System.out.println(stack.pop());
+                    break;
+                case "size":
+                    System.out.println(stack.size());
+                    break;
+                case "empty":
+                    if(stack.isEmpty()) System.out.println(1);
+                    else  System.out.println(0);
+                    break;
+                case "top":
+                    if(stack.isEmpty()) System.out.println(-1);
+                    else System.out.println(stack.peek());
+                    break;
+                default:
+                    break;
             }
-            bw.write("\n");
         }
-        bw.close();
-        bf.close();
+        sc.close();
     }
 }
