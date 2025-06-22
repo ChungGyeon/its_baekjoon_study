@@ -5,36 +5,21 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
-        int cnt=Integer.parseInt(sc.readLine());
-        Stack<Integer> stack=new Stack<>();
-
-        for(int i=0; i<cnt; i++){
-            String order=sc.readLine().trim();
-            String[] part=order.split("\\s+");
-            switch (part[0]) {
-                case "push":
-                    int a=Integer.parseInt(part[1]);
-                    stack.push(a);
-                    break;
-                case "pop":
-                    if(stack.isEmpty()) System.out.println(-1);
-                    else System.out.println(stack.pop());
-                    break;
-                case "size":
-                    System.out.println(stack.size());
-                    break;
-                case "empty":
-                    if(stack.isEmpty()) System.out.println(1);
-                    else  System.out.println(0);
-                    break;
-                case "top":
-                    if(stack.isEmpty()) System.out.println(-1);
-                    else System.out.println(stack.peek());
-                    break;
-                default:
-                    break;
+        int envelp=Integer.parseInt(sc.readLine());
+        int cnt=0;
+        while (true){
+            if(envelp%5==0){
+                cnt+=envelp / 5;
+                break;
+            }
+            envelp-=3;
+            cnt++;
+            if(envelp<0){
+                cnt=-1;
+                break;
             }
         }
+        System.out.println(cnt);
         sc.close();
     }
 }
