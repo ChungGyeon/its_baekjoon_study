@@ -11,21 +11,31 @@ public class Main {
         for (int i = 0; i < n; i++) {
             arr[i] = Double.parseDouble(st.nextToken());
         }
-        int start = 0, count = 0;
-        int end = n - 1, tmp = n - 1;
+        int start = 0, count = 0, tmp = 0;
+        int end = n - 1;
         Arrays.sort(arr);
         double target = arr[tmp];
-        while (start < end) {
-            if (target == arr[start] + arr[end] && arr[start] != target && arr[end] != target) {
-                end=n-1;
-                start=0;
-                tmp--;
-                target = arr[tmp];
-                count++;
+        for(int i=0; i<n; i++){
+            start=0;
+            end=n-1;
+            target = arr[i];
+         while (start < end) {
+            if (target == arr[start] + arr[end]) {
+                if(start != i && end != i ){
+                    count++;
+                    break;
+                }
+                else if (start == i){
+                    start++;
+                }
+                else if (end == i){
+                    end--;
+                }
             } else if (target < arr[start] + arr[end]) {
                 end--;
-            } else if (target > arr[start] + arr[end]) {
+            } else{
                 start++;
+            }
             }
         }
         System.out.println(count);
@@ -52,4 +62,6 @@ public class Main {
 * 3번이 가장 이 문제에 적절할거 같은데?
 * 1번은 내가 끝에서부터 시작하는걸 지적한거야,근데 이것도 문제 없는거 아닌가?
 * 인덱스 0 부터 시작하게 하는건 문제가 있지, 지금 코드로는
-* 만약 0부터 시작해서 아무것도 안맞는다면 target을 늘리고 하는 식으로 가야겠네*/
+* 만약 0부터 시작해서 아무것도 안맞는다면 target을 늘리고 하는 식으로 가야겠네
+*
+* 위 조건대로 해봐도 안되서 답지 보고 만듬*/
