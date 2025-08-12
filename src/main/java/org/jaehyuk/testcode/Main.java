@@ -19,21 +19,10 @@ public class Main {
         int count = 0;
         for(int i=0; i<(s-p)+1; i++) {
             String tmp = DNA.substring(i, i + p);
-            if ((tmp.length() - tmp.replace("A", "").length()) < minctn[0]){
-                continue;
+            if((tmp.length()-tmp.replace("A", "").length())>=minctn[0] && (tmp.length()-tmp.replace("C", "").length())>=minctn[1] && (tmp.length()-tmp.replace("G", "").length())>=minctn[2] && (tmp.length()-tmp.replace("T", "").length())>=minctn[3]){
+                count++;
             }
-            if ((tmp.length()-tmp.replace("C", "").length()) < minctn[1]) {
-                continue;
-            }
-            if((tmp.length() - tmp.replace("G", "").length()) < minctn[2]){
-                continue;
-            }
-            if((tmp.length() - tmp.replace("T", "").length()) < minctn[3]){
-                continue;
-            }
-            count++;
         }
         System.out.println(count);
     }
 }
-
