@@ -16,47 +16,24 @@ public class Main {
             minctn[i] = Integer.parseInt(st.nextToken());
         }
 
-        int[] dect = new int [4];
-        for(int i=0; i<DNA.length(); i++){
-            if(DNA.charAt(i) == 'A') dect[0]++;
-            if(DNA.charAt(i) == 'C') dect[1]++;
-            if(DNA.charAt(i) == 'G') dect[2]++;
-            if(DNA.charAt(i) == 'T') dect[3]++;
-        }
-        //애초에 개수 안맞는 예외처리
-        if(dect[0]<minctn[0] || dect[1]<minctn[1] || dect[2]<minctn[2] || dect[3]<minctn[3]){
-            System.out.println(0);
-            return;
-        }
-
-        int start = 0, count = 0, end = 0;
-        if(p==1) {
-            end = 1;
-        }
-        else{
-            end = p;
-        }
-        for(int i=0; i<(s-p)+1; i++){
-            dect[0]=0;
-            dect[1]=0;
-            dect[2]=0;
-            dect[3]=0;
-            for(int j = start; j<end; j++){
-                if(DNA.charAt(j) == 'A') dect[0]++;
-                if(DNA.charAt(j) == 'C') dect[1]++;
-                if(DNA.charAt(j) == 'G') dect[2]++;
-                if(DNA.charAt(j) == 'T') dect[3]++;
+        int count = 0;
+        for(int i=0; i<(s-p)+1; i++) {
+            String tmp = DNA.substring(i, i + p);
+            if ((tmp.length() - tmp.replace("A", "").length()) < minctn[0]){
+                continue;
             }
-            if(dect[0]<minctn[0] || dect[1]<minctn[1] || dect[2]<minctn[2] || dect[3]<minctn[3]){
-                start++;
-                end++;
+            if ((tmp.length()-tmp.replace("C", "").length()) < minctn[1]) {
+                continue;
             }
-            else{
-                count++;
-                start++;
-                end++;
+            if((tmp.length() - tmp.replace("G", "").length()) < minctn[2]){
+                continue;
             }
+            if((tmp.length() - tmp.replace("T", "").length()) < minctn[3]){
+                continue;
+            }
+            count++;
         }
         System.out.println(count);
     }
 }
+
