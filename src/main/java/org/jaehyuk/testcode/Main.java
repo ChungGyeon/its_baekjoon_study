@@ -16,12 +16,44 @@ public class Main {
             minctn[i] = Integer.parseInt(st.nextToken());
         }
 
+
+        int[] dect = new int [4];
         int count = 0;
-        for(int i=0; i<(s-p)+1; i++) {
-            String tmp = DNA.substring(i, i + p);
-            if((tmp.length()-tmp.replace("A", "").length())>=minctn[0] && (tmp.length()-tmp.replace("C", "").length())>=minctn[1] && (tmp.length()-tmp.replace("G", "").length())>=minctn[2] && (tmp.length()-tmp.replace("T", "").length())>=minctn[3]){
-                count++;
-            }
+
+        for(int i=0; i<p; i++){ //첫 라인 미리 계산
+            if(DNA.charAt(i) == 'A') dect[0]++;
+            if(DNA.charAt(i) == 'C') dect[1]++;
+            if(DNA.charAt(i) == 'G') dect[2]++;
+            if(DNA.charAt(i) == 'T') dect[3]++;
+        }
+        if (dect[0] >= minctn[0] && dect[1] >= minctn[1] && dect[2] >= minctn[2] && dect[3] >= minctn[3]) {
+            count++;
+        }
+
+            for (int i = p; i < s; i++) {
+                if (DNA.charAt(i) == 'A') {
+                    dect[0]--;
+                } else if (DNA.charAt(i) == 'C') {
+                    dect[1]--;
+                } else if (DNA.charAt(i) == 'G') {
+                    dect[2]--;
+                } else if (DNA.charAt(i - p) == 'T') {
+                    dect[3]--;
+                }
+
+                if (DNA.charAt(i) == 'A') {
+                    dect[0]++;
+                } else if (DNA.charAt(i) == 'C') {
+                    dect[1]++;
+                } else if (DNA.charAt(i) == 'G') {
+                    dect[2]++;
+                } else if (DNA.charAt(i) == 'T') {
+                    dect[3]++;
+                }
+
+                if (dect[0] >= minctn[0] && dect[1] >= minctn[1] && dect[2] >= minctn[2] && dect[3] >= minctn[3]) {
+                    count++;
+                }
         }
         System.out.println(count);
     }
